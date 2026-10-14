@@ -1,0 +1,18 @@
+name: Avisos RK47
+
+on:
+  workflow_dispatch:
+
+jobs:
+  aviso:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Enviar aviso a Discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          curl --fail --silent --show-error \
+            -H "Content-Type: application/json" \
+            -d '{"content":"🚨 RK47 | PRUEBA: Robo a negocio disponible."}' \
+            "$DISCORD_WEBHOOK_URL"
